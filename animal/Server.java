@@ -1,6 +1,6 @@
 package animal;
 
-//import java.rmi.RMISecurityManager;
+import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -14,10 +14,10 @@ public class Server
 		try {
 			CVImpl obj = new CVImpl();
 			
-			/*if(System.getSecurityManager()==null){
-	            System.setProperty("java.security.policy","./server.policy");
+			if(System.getSecurityManager()==null){
+	            System.setProperty("java.security.policy","/Users/Lolo/Documents/TP M1 S2/Archi-ntiers/src/animal/server.policy");
 	            System.setSecurityManager(new RMISecurityManager());
-	        }ne fonctionne pas */
+	        }
 			
 			Registry registry = LocateRegistry.createRegistry(1100);
 			if (registry==null){
