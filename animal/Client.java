@@ -1,5 +1,6 @@
 package animal;
 
+import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
@@ -20,22 +21,29 @@ public class Client
 			//version 2
 			System.out.println("Saisissez un nom d'animal");
 			String p_nom=sc.nextLine();
-			AnimalImpl response_ani = stub.rechercherAnimal(p_nom);
+			String response_ani = stub.rechercherAnimal(p_nom);
 			if (response_ani==null){
 				System.out.println("Il n'y a pas l'animal que vous demandez");
 			}else{
-			System.out.println(response_ani.toString());
+			System.out.println(response_ani);
 			}
+			
+			//String response_ani2 = stub.rechercherAnimal(p_nom);
+			//System.out.println(response_ani2);
 			//............................................................
 			//version 3
+			/*
+			 * Si on ne met pas le codebase on obtient une exception Marshal
+			 * c'est à dire que le serveur n'arrive pas à sérialiser la classe
+			 * EspeceProtege pour pouvoir afficher
+			 */
+			/*EspeceInterface rev = (EspeceInterface) Naming.lookup("EspeceInterface");
 			EspeceProtege esp_prot=new EspeceProtege("singe",80,"Oranoutan");
 			String response_esp = stub.syntheseEspece(esp_prot);
-			System.out.println(response_esp);
+			System.out.println(response_esp);*/
 			//............................................................
 			//ajout de fonctionnalité
-			DossierSuivi dos3=new DossierSuivi("Il va mourir");
-			AnimalImpl ani3=new AnimalImpl("bibi","Zozo","race bibi",dos3);
-			stub.addPatient(ani3);
+			stub.addPatient("bibi","Zozo","race bibi","Il va mourir");
 			
 			stub.deletePatient("bibi");
 		} catch (Exception e) {

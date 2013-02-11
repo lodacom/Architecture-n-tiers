@@ -1,27 +1,33 @@
 package animal;
 
-import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 @SuppressWarnings("serial")
-public class Espece implements Serializable{
-	public String espece;
-	public int duree;
+public class Espece extends UnicastRemoteObject implements EspeceInterface{
+	String espece;
+	int age_max;
 	
-	public Espece(String p_espece,int p_duree){
+	public Espece(String p_espece,int p_age_max) throws RemoteException{
 		espece=p_espece;
-		duree=p_duree;
+		age_max=p_age_max;
 	}
 	
-	String getEspece(){
-		return this.espece;
+	public String getEspece() throws RemoteException{
+		return espece;
 	}
 	
-	int getDureeVie(){
-		return this.duree;
+	public int getDureeVie() throws RemoteException{
+		return age_max;
 	}
 	
-	public String toString(){
-		return "L'espèce: "+this.getEspece()+
-				" La durée de vie:"+this.getDureeVie();
+	/**
+	 * @author Lolo
+	 * @return Une chaîne de caractère faisant la synthèse
+	 * de l'espèce
+	 */
+	public String syntheseEspece() throws RemoteException{
+		return "L'espèce de nom: "+espece+
+				" sa limite d'age: "+age_max;
 	}
 }

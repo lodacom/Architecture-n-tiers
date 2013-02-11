@@ -1,21 +1,10 @@
 package animal;
 
-import java.io.Serializable;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-@SuppressWarnings("serial")
-public class DossierSuivi implements Serializable
-{
-	public String dossier;
-	
-	public DossierSuivi(String p_dossier){
-		dossier=p_dossier;
-	}
-	
-	public String getDossier(){
-		return this.dossier;
-	}
-	
-	public void setDossier(String dos){
-		this.dossier=dos;
-	}
+public interface DossierSuivi extends Remote
+{	
+	public String getDossier()throws RemoteException;
+	public void setDossier(String dos)throws RemoteException;
 }

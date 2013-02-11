@@ -1,14 +1,20 @@
 package animal;
 
-import java.io.Serializable;
+import java.rmi.RemoteException;
 
 @SuppressWarnings("serial")
-public class EspeceProtege extends Espece implements Serializable{
-	public String espece_prot;
-	
-	public EspeceProtege(String p_espece, int p_duree, String p_esp) {
-		super(p_espece, p_duree);
-		espece_prot+=p_esp+" ceci est une espèce protégée";
-	}
+public class EspeceProtege extends Espece{
 
+	String nom;
+	
+	public EspeceProtege(String p_espece, int p_age_max,String p_nom) throws RemoteException {
+		super(p_espece, p_age_max);
+		nom=p_nom;
+	}
+	
+	public String syntheseEspece() throws RemoteException{
+		return super.syntheseEspece()+" avec un nom: "+
+		nom+" et cette espèce est protégée";
+	}
+	
 }
