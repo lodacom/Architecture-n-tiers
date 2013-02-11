@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 	public ArrayList<AnimalImpl> cabinet;
+	private int index;
 	
 	public CVImpl() throws RemoteException{
 		// TODO Auto-generated constructor stub
@@ -39,6 +40,7 @@ public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 			i++;
 		}
 		if (i<this.cabinet.size()){
+			index=i;
 			return this.cabinet.get(i);
 		}else{
 			return null;
@@ -47,6 +49,47 @@ public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 	
 	public String syntheseEspece(Espece p_esp) throws RemoteException{
 		return p_esp.toString();
+	}
+
+	@Override
+	/**
+	 * Ajoute un animal au cabinet de vétérinaire
+	 * Affiche si le cabinet a dépassé un seuil. 
+	 * Par défaut on affichera que l'on a ajouté un client
+	 * @param un animal avec la classe AnimalImpl (issu de la version 1)
+	 */
+	public void addPatient(AnimalImpl p_ani) throws RemoteException {
+		cabinet.add(p_ani);
+		switch(cabinet.size()){
+			case 10:System.out.println("Vous avez dépassé la limite de 10 patients (en hausse)");
+			break;
+			case 50:System.out.println("Vous avez dépassé la limite de 50 patients (en hausse)");
+			break;
+			case 100:System.out.println("Vous avez dépassé la limite de 100 patients (en hausse)");
+			break;
+			default:System.out.println("Vous avez ajouté un patient");
+		}
+	}
+
+	@Override
+	/**
+	 * Essai de suppression d'un animal dans le cabinet vétérinaire
+	 * Affiche si le cabinet baisse en capacité
+	 * Par défaut on affichera que l'on a enlevé un client
+	 * @param un animal avec la classe AnimalImpl (issu de la version 1)
+	 */
+	public void deletePatient(String p_nom) throws RemoteException {
+		rechercherAnimal(p_nom);
+		cabinet.remove(index);
+		switch(cabinet.size()){
+			case 10:System.out.println("Vous avez dépassé la limite de 10 patients (en baisse)");
+			break;
+			case 50:System.out.println("Vous avez dépassé la limite de 50 patients (en baisse)");
+			break;
+			case 100:System.out.println("Vous avez dépassé la limite de 100 patients (en baisse)");
+			break;
+			default:System.out.println("Vous avez supprimé un client");
+		}
 	}
 
 }

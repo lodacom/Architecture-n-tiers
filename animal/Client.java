@@ -31,7 +31,13 @@ public class Client
 			EspeceProtege esp_prot=new EspeceProtege("singe",80,"Oranoutan");
 			String response_esp = stub.syntheseEspece(esp_prot);
 			System.out.println(response_esp);
+			//............................................................
+			//ajout de fonctionnalité
+			DossierSuivi dos3=new DossierSuivi("Il va mourir");
+			AnimalImpl ani3=new AnimalImpl("bibi","Zozo","race bibi",dos3);
+			stub.addPatient(ani3);
 			
+			stub.deletePatient("bibi");
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();

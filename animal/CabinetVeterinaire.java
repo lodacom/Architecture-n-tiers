@@ -10,4 +10,6 @@ import java.rmi.RemoteException;
 public interface CabinetVeterinaire extends Remote {
 	AnimalImpl rechercherAnimal(String p_nom)throws RemoteException;
 	String syntheseEspece(Espece p_esp)throws RemoteException;
+	void addPatient(AnimalImpl p_ani)throws RemoteException;
+	void deletePatient(String p_nom)throws RemoteException;
 }

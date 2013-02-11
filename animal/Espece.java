@@ -22,6 +22,6 @@ public class Espece implements Serializable{
 	
 	public String toString(){
 		return "L'espèce: "+this.getEspece()+
-				"La durée de vie:"+this.getDureeVie();
+				" La durée de vie:"+this.getDureeVie();
 	}
 }
