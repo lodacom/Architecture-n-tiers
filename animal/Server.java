@@ -1,19 +1,14 @@
 package animal;
 
-import java.rmi.Naming;
+import java.net.InetAddress;
 import java.rmi.RMISecurityManager;
-import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.RMIClassLoader;
-import java.util.Properties;
 
 public class Server 
 {
 	public Server() {}
 
-
-	@SuppressWarnings("rawtypes")
 	public static void main(String args[]) {
 
 		try {
@@ -26,9 +21,7 @@ public class Server
 	        }
 			
 			//utilisation de la notion du codebase
-			Properties p= System.getProperties();
-			String url=p.getProperty("java.rmi.server.codebase");
-			//Class ClasseServeur = RMIClassLoader.loadClass(url,"Espece");
+			System.setProperty("java.rmi.server.codebase","http://" + InetAddress.getLocalHost().getHostAddress());
 			
 			Registry registry = LocateRegistry.createRegistry(1100);
 			if (registry==null){

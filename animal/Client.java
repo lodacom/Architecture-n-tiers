@@ -1,6 +1,5 @@
 package animal;
 
-import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
@@ -28,7 +27,6 @@ public class Client
 			System.out.println(response_ani);
 			}
 			
-			//String response_ani2 = stub.rechercherAnimal(p_nom);
 			//System.out.println(response_ani2);
 			//............................................................
 			//version 3
@@ -37,10 +35,9 @@ public class Client
 			 * c'est à dire que le serveur n'arrive pas à sérialiser la classe
 			 * EspeceProtege pour pouvoir afficher
 			 */
-			/*EspeceInterface rev = (EspeceInterface) Naming.lookup("EspeceInterface");
-			EspeceProtege esp_prot=new EspeceProtege("singe",80,"Oranoutan");
+			EspeceInterface esp_prot=new EspeceProtege("singe",80,"Oranoutan");
 			String response_esp = stub.syntheseEspece(esp_prot);
-			System.out.println(response_esp);*/
+			System.out.println(response_esp);
 			//............................................................
 			//ajout de fonctionnalité
 			stub.addPatient("bibi","Zozo","race bibi","Il va mourir");

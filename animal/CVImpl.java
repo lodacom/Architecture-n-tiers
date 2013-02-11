@@ -47,9 +47,8 @@ public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 		}
 	}
 	
-	public String syntheseEspece(Espece p_esp) throws RemoteException{
-		System.out.println("Coucou");
-		return p_esp.toString();
+	public String syntheseEspece(EspeceInterface p_esp) throws RemoteException{
+		return p_esp.syntheseEspece();
 	}
 
 	@Override
