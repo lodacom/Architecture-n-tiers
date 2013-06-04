@@ -10,4 +10,5 @@ public interface Animal extends Remote
 	String getRace()throws RemoteException;
 	void setDossier(String dos)throws RemoteException;
 	String getDossier()throws RemoteException;
+	String toStringAni()throws RemoteException;
 }

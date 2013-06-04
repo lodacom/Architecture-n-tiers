@@ -12,12 +12,12 @@ import java.util.ArrayList;
  * le Client ne pourra jamais connaître le stub
  */
 public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
-	public ArrayList<AnimalImpl> cabinet;
+	public ArrayList<Animal> cabinet;
 	private int index;
 	
 	public CVImpl() throws RemoteException{
 		// TODO Auto-generated constructor stub
-		this.cabinet=new ArrayList<AnimalImpl>();
+		this.cabinet=new ArrayList<Animal>();
 		DossierSuivi dos1=new DossierSuiviImpl("blabla");
 		AnimalImpl anim1=new AnimalImpl("kiki", "Doudou", "kiki", dos1);
 		
@@ -33,7 +33,7 @@ public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 	 * @return un animal avec la classe AnimalImpl (issu de la version 1)
 	 * @param un nom d'animal que l'on cherche
 	 */
-	public String rechercherAnimal(String p_nom) throws RemoteException {
+	public Animal rechercherAnimal(String p_nom) throws RemoteException {
 		// TODO Auto-generated method stub
 		int i=0;
 		while(i<this.cabinet.size() && !this.cabinet.get(i).getNom().equals(p_nom)){
@@ -41,7 +41,7 @@ public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 		}
 		if (i<this.cabinet.size()){
 			index=i;
-			return this.cabinet.get(i).toString();
+			return this.cabinet.get(i);
 		}else{
 			return null;
 		}
@@ -58,10 +58,9 @@ public class CVImpl extends UnicastRemoteObject implements CabinetVeterinaire {
 	 * Par défaut on affichera que l'on a ajouté un client
 	 * @param un animal avec la classe AnimalImpl (issu de la version 1)
 	 */
-	public void addPatient(String p_nom,String p_nomMaitre,String p_race,String p_dos) throws RemoteException {
-		AnimalImpl p_ani = new AnimalImpl();
-		DossierSuivi p_doss = new DossierSuiviImpl(p_dos);
-		p_ani=p_ani.addInstance(p_nom, p_nomMaitre, p_race, p_doss);
+	public void addPatient(Animal p_ani) throws RemoteException {
+		//DossierSuivi p_doss = new DossierSuiviImpl(p_dos);
+		//AnimalImpl p_ani=new AnimalImpl(p_nom, p_nomMaitre, p_race, p_doss);
 		cabinet.add(p_ani);
 		switch(cabinet.size()){
 			case 10:System.out.println("Vous avez dépassé la limite de 10 patients (en hausse)");

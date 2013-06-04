@@ -8,8 +8,8 @@ import java.rmi.RemoteException;
  * en place le mécanisme de RMI
  */
 public interface CabinetVeterinaire extends Remote {
-	String rechercherAnimal(String p_nom)throws RemoteException;
+	Animal rechercherAnimal(String p_nom)throws RemoteException;
 	String syntheseEspece(EspeceInterface p_esp)throws RemoteException;
-	void addPatient(String p_nom,String p_nomMaitre,String p_race,String p_dos)throws RemoteException;
+	void addPatient(Animal p_ani)throws RemoteException;
 	void deletePatient(String p_nom)throws RemoteException;
 }

@@ -29,16 +29,6 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal
 		dos=p_dos;
 	}
 	
-	public AnimalImpl addInstance(String p_nom,String p_nomMaitre,String p_race,DossierSuivi p_dos){
-		try {
-			return new AnimalImpl(p_nom, p_nomMaitre, p_race, p_dos);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 	@Override
 	public String getNom() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -74,7 +64,7 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal
 	 * @author Lolo
 	 * @return toutes les informations concernant l'animal
 	 */
-	public String toString(){
+	public String toStringAni() throws RemoteException{
 		try {
 			return 	"Le nom: "+this.getNom()+
 					" Le nom du maître: "+this.getNomMaitre()+

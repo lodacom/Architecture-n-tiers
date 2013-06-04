@@ -20,11 +20,11 @@ public class Client
 			//version 2
 			System.out.println("Saisissez un nom d'animal");
 			String p_nom=sc.nextLine();
-			String response_ani = stub.rechercherAnimal(p_nom);
+			Animal response_ani = stub.rechercherAnimal(p_nom);
 			if (response_ani==null){
 				System.out.println("Il n'y a pas l'animal que vous demandez");
 			}else{
-			System.out.println(response_ani);
+			System.out.println(response_ani.toStringAni());
 			}
 			
 			//System.out.println(response_ani2);
@@ -40,8 +40,15 @@ public class Client
 			System.out.println(response_esp);
 			//............................................................
 			//ajout de fonctionnalité
-			stub.addPatient("bibi","Zozo","race bibi","Il va mourir");
-			
+			DossierSuivi dos=new DossierSuiviImpl("Il va mourir");
+			Animal ani=new AnimalImpl("bibi","Zozo","race bibi",dos);
+			stub.addPatient(ani);
+			Animal response_ani2 = stub.rechercherAnimal("bibi");
+			if (response_ani2==null){
+				System.out.println("Il n'y a pas l'animal que vous demandez");
+			}else{
+			System.out.println(response_ani2.toStringAni());
+			}
 			stub.deletePatient("bibi");
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());

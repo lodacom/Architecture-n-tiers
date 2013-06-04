@@ -1,6 +1,5 @@
 package animal;
 
-import java.net.InetAddress;
 import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -21,14 +20,13 @@ public class Server
 	        }
 			
 			//utilisation de la notion du codebase
-			System.setProperty("java.rmi.server.codebase","http://" + InetAddress.getLocalHost().getHostAddress());
+			//System.setProperty("java.rmi.server.codebase","file:///Users/Lolo/Documents/TP M1 S2/Archi-ntiers/bin/EspeceProtege.class");
 			
 			Registry registry = LocateRegistry.createRegistry(1100);
 			if (registry==null){
 				System.err.println("RmiRegistry not found");
 			}else{
 				registry.bind("CabinetVeterinaire", obj);
-				//Naming.bind("Espece",(Remote)ClasseServeur.newInstance());
 				System.err.println("Server ready");
 			}
 		} catch (Exception e) {
